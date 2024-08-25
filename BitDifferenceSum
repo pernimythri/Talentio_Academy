@@ -1,0 +1,42 @@
+import java.util.*;
+class Solution 
+{
+    int BitDifferenceCount(int m,int n)
+    {
+        int xor=m^n;
+        int count=0;
+        while(xor>0)
+        {
+            count+=xor&1;
+            xor=xor>>1;
+        }
+        return count;
+    }
+    
+    int ArrayBitDifference(int[] arr,int n)
+    {
+        int sum=0;
+        for(int j=0;j<n;j++)
+        {
+            for(int k=j+1;k<n;k++)
+            {
+                sum+=BitDifferenceCount(arr[j],arr[k]);
+            }
+        }
+        return sum;
+    }
+    public static void main(String args[])
+    {
+        Solution obj=new Solution();
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter no.of elememts : ");
+        int n=sc.nextInt();
+        System.out.print("Enter elements into an array : ");
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        System.out.println("BitDifferenceSum : " + obj.ArrayBitDifference(arr,n));
+    }
+}
