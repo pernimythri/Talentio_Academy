@@ -1,18 +1,7 @@
+Time Complexity - O(N^2)
 import java.util.*;
 class Solution 
 {
-    int BitDifferenceCount(int m,int n)
-    {
-        int xor=m^n;
-        int count=0;
-        while(xor>0)
-        {
-            count+=xor&1;
-            xor=xor>>1;
-        }
-        return count;
-    }
-    
     int ArrayBitDifference(int[] arr,int n)
     {
         int sum=0;
@@ -24,6 +13,17 @@ class Solution
             }
         }
         return sum;
+    }
+  int BitDifferenceCount(int m,int n)
+    {
+        int xor=m^n;
+        int count=0;
+        while(xor>0)
+        {
+            count+=xor&1;
+            xor=xor>>1;
+        }
+        return count;
     }
     public static void main(String args[])
     {
@@ -38,5 +38,49 @@ class Solution
             arr[i]=sc.nextInt();
         }
         System.out.println("BitDifferenceSum : " + obj.ArrayBitDifference(arr,n));
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Time Complexity - O(N)
+
+import java.util.*;
+
+class Solution 
+{
+    int ArrayBitDifference(int[] arr, int n)
+    {
+        int totalSum = 0;
+        int bitCount;
+        for (int i = 0; i < 32; i++) 
+        {
+            bitCount = 0;
+            for (int j = 0; j < n; j++) 
+            {
+                if ((arr[j] & (1 << i)) != 0) 
+                {
+                    bitCount++;
+                }
+            }
+            
+            totalSum += bitCount * (n - bitCount);
+        }
+        return totalSum;
+    }
+
+    public static void main(String args[])
+    {
+        Solution obj = new Solution();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        System.out.print("Enter elements into an array: ");
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("BitDifferenceSum: " + obj.ArrayBitDifference(arr, n));
     }
 }
