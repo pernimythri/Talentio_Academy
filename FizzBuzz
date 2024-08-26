@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Solution {
+
+    List<String> FizzBuzz(int num) {
+        List<String> output = new ArrayList<>();
+        for (int i = 1; i <= num; i++) {
+            if (i % 3 == 0 && i % 5 == 0) {
+                output.add("FizzBuzz");
+            } else if (i % 3 == 0) {
+                output.add("Fizz");
+            } else if (i % 5 == 0) {
+                output.add("Buzz");
+            } else {
+                output.add(Integer.toString(i));
+            }
+        }
+        return output;
+    }
+
+    public static void main(String[] args) {
+        Solution obj = new Solution();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+        List<String> sol = obj.FizzBuzz(n);
+        System.out.println(sol);
+    }
+}
