@@ -1,0 +1,79 @@
+import java.util.*;
+class Solution 
+{
+    public String Hexadecimal(int num) {
+        if (num == 0) return "0";
+        return Integer.toHexString(num).toLowerCase();
+    }
+    
+    public static void main(String args[])
+    {
+        Solution obj=new Solution();
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter a number : ");
+        int n=sc.nextInt();
+        System.out.println("Hexadecimal Number :  "+ obj.Hexadecimal(n));
+        
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Time Complexity - O(1)
+
+import java.util.*;
+class Solution 
+{
+    String Hexadecimal(int num)
+    {
+        if(num==0)
+        return "0";
+     
+        char[] hexMap = "0123456789abcdef".toCharArray();
+        StringBuilder hexString = new StringBuilder();
+        while (num != 0 && hexString.length() < 8) {
+            int hexDigit = num & 0xf;  
+            hexString.append(hexMap[hexDigit]);
+            num >>>= 4;
+      }  return hexString.reverse().toString();
+    }
+    public static void main(String args[])
+    {
+        Solution obj=new Solution();
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter a number : ");
+        int n=sc.nextInt();
+        System.out.println("Hexadecimal Number :  "+ obj.Hexadecimal(n));
+        
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class Solution {
+    public String toHex(int num) {
+        if (num == 0) return "0";
+
+        StringBuilder hexString = new StringBuilder();
+        char[] hexMap = "0123456789abcdef".toCharArray();
+
+        // Handle negative numbers
+        if (num < 0) {
+            num += 1L << 32; // Convert to positive equivalent for 32-bit integer
+        }
+
+        while (num > 0) {
+            int hexDigit = num & 0xf;
+            hexString.append(hexMap[hexDigit]);
+            num >>>= 4;
+        }
+
+        return hexString.reverse().toString();
+    }
+
+    public static void main(String[] args) {
+        Solution obj = new Solution();
+
+        int num1 = 26;
+        int num2 = -1;
+
+        System.out.println("Hexadecimal of " + num1 + " is: " + obj.toHex(num1)); // Output: "1a"
+        System.out.println("Hexadecimal of " + num2 + " is: " + obj.toHex(num2)); // Output: "ffffffff"
+    }
+}
