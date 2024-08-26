@@ -1,0 +1,80 @@
+Time Complexity - O(N)
+Space Complexity - O(N)
+
+import java.util.*;
+class Solution {
+    List<Integer> RandomPickIndex(int[] arr,int n,int target)
+    {
+        
+        List<Integer>temp=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]==target)
+            temp.add(i);
+        }
+        return  temp;
+    }
+    public  static void main(String[] args)
+    {
+        Solution obj=new Solution();
+              Scanner sc = new Scanner(System.in);
+        System.out.print("Enter no.of elements : ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.print("Enter elements to array : ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+       System.out.print("Enter Target value : ");
+        int target = sc.nextInt();
+            List<Integer>sol = obj.RandomPickIndex(arr,n, target);
+          
+            Random rand=new Random();
+             if (sol.isEmpty()) 
+            System.out.println("Target not found in the array.");
+            else
+            {
+              int index=rand.nextInt(sol.size());
+                    System.out.println(sol.get(index));
+
+            }
+        }}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Time Complexity - O(N)
+Space Complexity - O(1)
+
+import java.util.*;
+class Solution {
+    static int RandomPickIndex(int[] arr, int target) {
+        Random rand = new Random();
+        int count = 0; 
+        int result = -1; 
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                count++;
+                if (rand.nextInt(count) == 0) {
+                    result = i;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter no.of elements : ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.print("Enter elements to array : ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+       System.out.print("Enter Target value : ");
+        int target = sc.nextInt();
+            int index = RandomPickIndex(arr, target);
+            System.out.println("Random Index of Target : " +index);
+        }
+    }
